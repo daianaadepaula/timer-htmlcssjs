@@ -1,0 +1,49 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background: black;
+}
+
+img{
+    height: 500px;
+    display: block;
+    margin: 0 auto;
+}
+
+#box-numbers{
+    display: block;
+    margin: 0 auto;
+    background: white;
+    width: 340px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.numbers{
+    text-align: center;
+    font-weight: 600;
+    font-size: 50px;
+}
+
+.green-number{
+    color: #C5FB01;
+}
+
+#box-buttons{
+    margin-top: 20px;
+    text-align: center;
+}
+
+.buttons{
+    color: #C5FB01;
+    background: white;
+    padding: 6px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}

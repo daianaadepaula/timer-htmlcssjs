@@ -14,20 +14,49 @@
     <img src="./assets/missao-1.png" alt="img-logo">
 
     <div id="box-numbers">
-        <span class="numbers">00</span>
+        <span class="numbers" id="hours">00</span>
         <span class="numbers">:</span>
-        <span class="numbers">00</span>
+        <span class="numbers" id="minutes">00</span>
         <span class="numbers">:</span>
-        <span class="numbers">01</span>
+        <span class="numbers" id="seconds">01</span>
         <span class="numbers">:</span>
-        <span class="numbers green-number">07</span>
+        <span class="numbers green-number" id="milliseconds">07</span>
     </div>
 
     <div id="box-buttons">
-        <button class="buttons">Start</button>
+        <button class="buttons" id="start">Start</button>
         <button class="buttons">Stop</button>
         <button class="buttons">Resert</button>
     </div>
 
 </body>
+<script>
+// botão (start)    
+    let btnStart = document.getElementById("start")
+// horas, minutos, segundos e milésimo de segundo
+    let milliseconds = document.getElementById("milliseconds")
+    let seconds = document.getElementById("seconds")
+    let minutes = document.getElementById("minutes")
+    let hours = document.getElementById("hours")
+// 
+    let startTimer
+    let ms = 0
+    let sec = 0
+    let min = 0
+    let hr = 0
+
+    function start(){
+        startTimer = setInterval(() => {
+            ms++
+            updateValue()
+        }, 10);
+        
+    }
+
+    function updateValue(){
+        milliseconds.innerHTML = ms
+    }
+
+    btnStart.addEventListener("click", start)
+</script>
 </html> 

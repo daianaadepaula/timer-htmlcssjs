@@ -18,45 +18,114 @@
         <span class="numbers">:</span>
         <span class="numbers" id="minutes">00</span>
         <span class="numbers">:</span>
-        <span class="numbers" id="seconds">01</span>
+        <span class="numbers" id="seconds">00</span>
         <span class="numbers">:</span>
-        <span class="numbers green-number" id="milliseconds">07</span>
+        <span class="numbers green-number" id="milliseconds">00</span>
     </div>
 
     <div id="box-buttons">
         <button class="buttons" id="start">Start</button>
-        <button class="buttons">Stop</button>
-        <button class="buttons">Resert</button>
+        <button class="buttons" id="stop">Stop</button>
+        <button class="buttons" id="reset">Resert</button>
     </div>
 
 </body>
 <script>
-// botão (start)    
+
+// Essas variáveis é o nossos botões (start, stop e reset) do HTML   
     let btnStart = document.getElementById("start")
-// horas, minutos, segundos e milésimo de segundo
+    let btnStop = document.getElementById("stop")
+    let btnReset = document.getElementById("reset")
+// Essas variáveis são (horas, minutos, segundos e milésimo de segundo) do HTML
     let milliseconds = document.getElementById("milliseconds")
     let seconds = document.getElementById("seconds")
     let minutes = document.getElementById("minutes")
     let hours = document.getElementById("hours")
-// 
-    let startTimer
-    let ms = 0
-    let sec = 0
-    let min = 0
-    let hr = 0
 
+// Essa variável, guarda o nosso timer 
+    let startTimer
+// Essas variáveis guadará (horas, minutos, segundos e milésimo de segundo) dentro do JavaScript
+    let ms = "00"
+    let sec = "00"
+    let min = "00"
+    let hr = "00"
+
+// Essa função dispara o timer, e é chamada quando eu clico no botão START    
     function start(){
         startTimer = setInterval(() => {
-            ms++
+            ms++  // Cada vez que eu passo aqui, eu somo +1
+
+            if(ms === 100){
+                sec++
+
+                    if (sec < 10) {  
+                        sec = "0" + sec // Nesse caso o "0" é um texto
+                    }
+
+                ms = 0
+            }
+            
+            if(sec === 60){
+                min++
+
+                    if (min < 10) {  
+                        min = "0" + min // Nesse caso o "0" é um texto
+                    }
+
+                sec = 0
+            }
+
+            if(min === 60){
+                hr++
+
+                    if (hr < 10) {  
+                        hr = "0" + hr // Nesse caso o "0" é um texto
+                    }
+
+                min = 0
+            }
+
+            btnStart.classList.add("active")
+            btnStop.classList.remove("active")
+
             updateValue()
-        }, 10);
+        }, 10); // De quanto em quanto tempo será chamado em milisegundos
         
     }
 
+// Essa função para o timer, e é chamada quando eu clico no botão STOP   
+    function Stop(){
+        clearInterval(startTimer)
+
+        btnStop.classList.add("active")
+        btnStart.classList.remove("active")
+    }
+
+// Essa função para e zera o timer, e é chamada quando eu clico no botão RESET
+    function reset(){
+        clearInterval(startTimer)
+        ms = "00"
+        sec = "00"
+        min = "00"
+        hr = "00"
+
+        btnStart.classList.remove("active")
+        btnStop.classList.remove("active")
+
+        updateValue()
+    }
+
+// Essa função colocar o valor dentro do HTML
     function updateValue(){
         milliseconds.innerHTML = ms
+        seconds.innerHTML = sec
+        minutes.innerHTML = min
+        hours.innerHTML = hr
     }
 
     btnStart.addEventListener("click", start)
+    btnStop.addEventListener("click", Stop)
+    btnReset.addEventListener("click", reset)
+
 </script>
 </html> 
